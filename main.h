@@ -8,7 +8,7 @@
 
 int _putchar(char c);
 char *rot13(char *str);
-int _strlen(const char *str);
+int prntf_strlen(const char *str);
 int prntf_string(char *str);
 int prntf_binary(unsigned int num);
 int prntf_id(int a);

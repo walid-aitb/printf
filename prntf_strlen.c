@@ -6,7 +6,7 @@
  * Return: length.
  */
 
-int _strlen(const char *str)
+int prntf_strlen(const char *str)
 {
   int len = 0;
 
