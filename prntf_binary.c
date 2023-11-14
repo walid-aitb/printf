@@ -1,40 +1,44 @@
 #include "main.h"
 
 /**
- * prntf_binary - converts decimal to binary
- * @n: argument
- * Return: count
+ * prntf_binary - prints binary number
+ * @b: argument
+ *
+ * Return: integer
  */
 
-int prntf_binary(unsigned int n)
+int prntf_binary(va_list b)
 
 {
- int count = 0; 
- int binary[64]; /* Assuming a 64 bit system */
- int i = 0;
- int j;
+	unsigned int counter, i, j, k, n, number;
+	int c = 0;
 
-if (n == 0)
-{
-_putchar('0');
-_putchar('\n');
-return 1;
-}
-
-while (n > 0)
-{
-binary[i] = n % 2;
-n /= 2;
-i++;
-}
-
-for (j = i - 1; j >= 0; j--)
-{
-_putchar('0' + binary[j]);
-count++;
-}
-
-_putchar('\n');
-
-return count;
+	n = va_arg(b, unsigned int); 
+	if (n)
+	{
+		number = n;
+		counter = 0;
+		while (number)
+		{
+			number /= 2;
+			counter++;
+		}
+		j = 1;
+		for (i = 1; i <= counter - 1; i++) 
+			j *= 2;
+		for (i = 1; i <= counter; i++)
+		{
+			k = n / j;
+			_putchar(k + '0');
+			c++;
+			n -= k * j; 
+		  j /= 2;
+		}
+	}
+	else
+	{
+		_putchar('0');
+		return (1);
+	}
+	return c;
 }

@@ -2,106 +2,45 @@
 
 /**
  * _printf - prints an output according to a format
- * @format: string.
- * @...: Variable arguments
- * Return: Number of printed chars, else -1 on error.
+ * @format: input
+ * Return: length
  */
 
 int _printf(const char *format, ...)
-int prntf_binary(unsigned int num);
-int prntf_id(int num);
-int prntf_string(char *str);
+
 {
-	int i = 0;
-	va_list arg; 
 
-	va_start(arg, format);
+va_list args;
+unsigned int i, len = 0;
 
-	if (!format || (format[0] == '%' && format[1] == '\0'))
-		return (-1);
+va_start(args, format);
 
-	while (*format)
+if (!format || (format[0] == '%' && !format[1])) 
+	return (-1);
+
+for (i = 0; format[i]; i++)
+{
+	if (format[i] == '%')
 	{
-		if (*format == '%')
-		{
-			format++;
-			if (*format == '%')
-			{
-				_putchar('%');
-				i++;
-			}
-			else if (*format == 'd' || *format == 'i')
-			{
-				int num = va_arg(arg, int);
-
-				if (num == 0) 
-				{
-					_putchar('0');
-					i++;
-				}
-				else
-				{
-					i += print_id(num);
-				}
-			}
-			else if (*format == 'c')
-			{
-				_putchar(va_arg(arg, int));
-				i++;
-			}
-			else if (*format == 's')
-			{
-				char *str = va_arg(arg, char *);
-
-				if (str == NULL)
-				{
-					prntf_string("(null)");
-					i += 6;
-				}
-				else
-				{
-					i += prntf_string(str); 
-				}
-			}
-			else if (*format == 'b')
-			{
-				unsigned int num = va_arg(arg, unsigned int);
-
-				return (prntf_binary(num));
-			}
-			else if (*format == 'r')
-			{
-				char *str = va_arg(arg, char *);
-				int len = prntf_strlen(str);
-				int j;
-
-				for (j = len - 1; j >= 0; j--)
-				{
-					_putchar(str[j]);
-					i++;
-				}
-			}
-			else if (*format == 'R')
-			{
-				char *str = va_arg(arg, char *);
-				char *rot_str = rot13(str);
-
-				i += prntf_string(rot_str);
-			}
-			else
-			{
-				_putchar('%');
-				_putchar(*format);
-				i += 2;
-			}
+		if (format[i + 1] == '%')
+		{   _putchar('%');
+			i = i + 1;
+			len++;
+		}
+		else if (prntf_search(format, i + 1) != NULL) 
+		{   len += prntf_search(format, i + 1)(args);
+			i = i + 1;
 		}
 		else
-		{
-			_putchar(*format);
-			i++;
+		{ _putchar(format[i]);
+			len++;
 		}
-		format++;
 	}
-	va_end(arg);
-	return i;
+	else
+	{ _putchar(format[i]);
+		len++;
+	}
+}
+va_end(args);
+return len;
 }

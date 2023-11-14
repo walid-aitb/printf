@@ -1,35 +1,24 @@
 #include "main.h"
 
 /**
- * prntf_string - prints string
- * @str: argument.
- * Return: length
- */
+ * prntf_string - prints tring
+ * @argument: variadic argument 
+ * Return: integer
+**/
 
-int prntf_string(char *str)
+int prntf_string(va_list argument)
 {
- int i = 0;
+ char *str;
+ int i;
 
+str = va_arg(argument, char *);
 if (str == NULL)
 {
-char *null_str = "(null)";
-
-while (*null_str)
-{
-_putchar(*null_str);
-i++;
-null_str++;
+	str = "(null)";
 }
+for (i = 0; str[i] != '\0'; i++)
+{
+	_putchar(str[i]);
 }
-else
-{
-while (*str)
-{
-_putchar(*str);
-i++;
-str++;
-}  
-}   
-
 return i;
 }

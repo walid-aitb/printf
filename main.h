@@ -1,18 +1,32 @@
-#ifndef _MAIN_H_
-#define _MAIN_H_
+#ifndef MAIN_H
+#define MAIN_H
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<stdarg.h>
-#include<limits.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <unistd.h>
+#include <limits.h>
+#include <stddef.h>
 
-int _putchar(char c);
-char *rot13(char *str);
-int prntf_strlen(const char *str);
-int prntf_string(char *str);
-int prntf_binary(unsigned int num);
-int prntf_id(int a);
-void spec_format(va_list argument, char spec, int *i);
+/**
+ * struct spec - structure
+ * @m: string
+ * @func: function
+ */
+
+typedef struct spec
+{
+	char *m;
+	int (*func)(va_list);
+}
+sp_t;
+
 int _printf(const char *format, ...);
+int _putchar(char c);
+int prntf_char(va_list argument);
+int prntf_string(va_list argument);
+int prntf_binary(va_list b);
+int prntf_int(va_list args);
+int (*prntf_search(const char *next, int position))(va_list);
 
 #endif
