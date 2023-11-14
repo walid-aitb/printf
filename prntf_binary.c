@@ -10,7 +10,7 @@
 int prntf_binary(va_list b)
 
 {
-	unsigned int counter, i, j, k, n, number;
+	unsigned int counter, j, i, l, n, number;
 	int c = 0;
 
 	n = va_arg(b, unsigned int); 
@@ -28,10 +28,10 @@ int prntf_binary(va_list b)
 			j *= 2;
 		for (i = 1; i <= counter; i++)
 		{
-			k = n / j;
-			_putchar(k + '0');
+			l = n / j;
+			_putchar(l + '0');
 			c++;
-			n -= k * j; 
+			n -= l * j; 
 		  j /= 2;
 		}
 	}
@@ -40,5 +40,5 @@ int prntf_binary(va_list b)
 		_putchar('0');
 		return (1);
 	}
-	return c;
+	return (c);
 }

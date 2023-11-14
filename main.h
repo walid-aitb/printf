@@ -21,12 +21,12 @@ typedef struct spec
 }
 sp_t;
 
-int _printf(const char *format, ...);
 int _putchar(char c);
+int _printf(const char *format, ...);
 int prntf_char(va_list argument);
 int prntf_string(va_list argument);
+int (*prntf_search(const char *next, int position))(va_list);
 int prntf_binary(va_list b);
 int prntf_int(va_list args);
-int (*prntf_search(const char *next, int position))(va_list);
 
 #endif
