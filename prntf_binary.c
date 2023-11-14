@@ -6,7 +6,7 @@
  * Return: count
  */
 
-int print_binary(unsigned int n)
+int prntf_binary(unsigned int n)
 
 {
  int count = 0; 
@@ -18,7 +18,7 @@ if (n == 0)
 {
 _putchar('0');
 _putchar('\n');
-return (1);
+return 1;
 }
 
 while (n > 0)
