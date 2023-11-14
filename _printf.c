@@ -15,7 +15,7 @@ unsigned int i, len = 0;
 
 va_start(args, format);
 
-if (!format || (format[0] == '%' && !format[1])) 
+if (!format || (format[0] == '%' && !format[1]))
 	return (-1);
 
 for (i = 0; format[i]; i++)
@@ -27,7 +27,7 @@ for (i = 0; format[i]; i++)
 			i = i + 1;
 			len++;
 		}
-		else if (prntf_search(format, i + 1) != NULL) 
+		else if (prntf_search(format, i + 1) != NULL)
 		{   len += prntf_search(format, i + 1)(args);
 			i = i + 1;
 		}
@@ -42,5 +42,5 @@ for (i = 0; format[i]; i++)
 	}
 }
 va_end(args);
-return len;
+return (len);
 }
