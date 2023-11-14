@@ -1,18 +1,43 @@
-#ifndef _MAIN_H_
-#define _MAIN_H_
+#ifndef MAIN_H
+#define MAIN_H
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<stdarg.h>
-#include<limits.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <unistd.h>
+#include <stddef.h>
+#include <limits.h>
+/**
+ * struct specifiers - structure
+ * @m: the specifier to match after %
+ * @func: the function to call
+ */
+typedef struct specifiers
+{
+	char *m;
+	int (*func)(va_list);
+}
+sp_t;
 
+/*writes a character*/
 int _putchar(char c);
-int print_string(char *str);
-void format_specifier(va_list argument, char spec, int *i);
+
+/*printf function*/
 int _printf(const char *format, ...);
-int print_binary(unsigned int num);
-int my_strlen(const char *str);
-int print_id(int a);
-char *rot13(char *str);
+
+/*printf a character*/
+int _print_char(va_list argument);
+
+/*prints a string*/
+int _print_string(va_list argument);
+
+/*search for match and execute the function*/
+int (*search_match(const char *next, int position))(va_list);
+
+/*print int*/
+int _print_int(va_list args);
+
+/*print binary*/
+int _print_binary(va_list b);
 
 #endif
